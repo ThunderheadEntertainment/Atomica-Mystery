@@ -1,1 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Atomica Murder Mystery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1c1c1c;
+      --accent: #c41212;
+      --text: #f5f5f5;
+      --gold: #ffd56a;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .wrap {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+    .card {
+      width: min(680px, 92vw);
+      background: var(--card);
+      border: 3px solid var(--accent);
+      border-radius: 14px;
+      box-shadow: 0 0 24px rgba(196, 18, 18, .45);
+      padding: 28px 26px;
+      text-align: center;
+    }
+    h1, h2 {
+      margin: 0 0 10px;
+      letter-spacing: 1.5px;
+    }
+    h1 { font-size: 2rem; color: #ff3a3a; text-transform: uppercase; }
+    h2 { font-size: 1.4rem; color: #ff5a5a; text-transform: uppercase; }
+    p { font-size: 1.1rem; line-height: 1.5; margin: 10px 0; }
+    .label { color: var(--gold); font-weight: 700; }
+    .muted { color: #bdbdbd; font-size: .95rem; margin-top: 6px; }
+    .big-letter {
+      display: inline-block;
+      font-size: 2.2rem;
+      padding: 6px 14px;
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      margin: 8px 0 14px;
+    }
+    .footer {
+      margin-top: 14px; font-size: .9rem; color: #9a9a9a;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="card">
+      <!-- content injected by JS -->
+    </div>
+  </div>
+
+  <script>
+    // ----- Editable data (placeholders now; swap later tonight) -----
+    const CLUES = {
+      "stop1": {
+        letter: "QR Code 1",
+        evidence: "Placeholder evidence for Stop 1.",
+        riddle: "Placeholder riddle for Stop 1."
+      },
+      "stop2": {
+        letter: "QR Code 2",
+        evidence: "Placeholder evidence for Stop 2.",
+        riddle: "Placeholder riddle for Stop 2."
+      },
+      "stop3": {
+        letter: "QR Code 3",
+        evidence: "Placeholder evidence for Stop 3.",
+        riddle: "Placeholder riddle for Stop 3."
+      },
+      "stop4": {
+        letter: "QR Code 4",
+        evidence: "Placeholder evidence for Stop 4.",
+        riddle: "Placeholder riddle for Stop 4."
+      },
+      "stop5": {
+        letter: "QR Code 5",
+        evidence: "Placeholder evidence for Stop 5.",
+        riddle: "Placeholder riddle for Stop 5."
+      },
+      "final": {
+        letter: "Final QR",
+        evidence: "Placeholder final clue (confession).",
+        riddle: "Placeholder closing message."
+      }
+    };
+
+    // ----- Renderer -----
+    const card = document.getElementById("card");
+
+    function render(hashKey) {
+      const clue = CLUES[hashKey];
+      if (clue) {
+        card.innerHTML = `
+          <h1>${clue.letter}</h1>
+          <div class="big-letter">${clue.letter}</div>
+          <p><span class="label">Evidence:</span> ${clue.evidence}</p>
+          <p><span class="label">Riddle:</span> ${clue.riddle}</p>
+          <div class="footer">Scan the next QR to continue…</div>
+        `;
+      } else {
+        card.innerHTML = `
+          <h1>Atomica Murder Mystery</h1>
+          <p class="muted">No clue found. You probably opened the page without a QR code.</p>
+          <p>Scan a valid QR to reveal your next clue.</p>
+        `;
+      }
+    }
+
+    function currentHashKey() {
+      const raw = window.location.hash || "";
+      // Expecting #stop1, #stop2, … #final
+      return raw.startsWith("#") ? raw.substring(1) : raw;
+    }
+
+    // Initial render
+    render(currentHashKey());
+
+    // Update if hash changes (e.g., you navigate from #stop1 → #stop2)
+    window.addEventListener("hashchange", () => render(currentHashKey()));
+  </script>
+</body>
+</html>
 
