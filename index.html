@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Atomica Murder Mystery</title>
+  <title>Atomica Murder Mysteries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
@@ -63,38 +63,25 @@
   </div>
 
   <script>
-    // ----- Editable data (placeholders now; swap later tonight) -----
+    // ----- Both Mystery Sets -----
     const CLUES = {
-      "stop1": {
-        letter: "QR Code 1",
-        evidence: "Placeholder evidence for Stop 1.",
-        riddle: "Placeholder riddle for Stop 1."
-      },
-      "stop2": {
-        letter: "QR Code 2",
-        evidence: "Placeholder evidence for Stop 2.",
-        riddle: "Placeholder riddle for Stop 2."
-      },
-      "stop3": {
-        letter: "QR Code 3",
-        evidence: "Placeholder evidence for Stop 3.",
-        riddle: "Placeholder riddle for Stop 3."
-      },
-      "stop4": {
-        letter: "QR Code 4",
-        evidence: "Placeholder evidence for Stop 4.",
-        riddle: "Placeholder riddle for Stop 4."
-      },
-      "stop5": {
-        letter: "QR Code 5",
-        evidence: "Placeholder evidence for Stop 5.",
-        riddle: "Placeholder riddle for Stop 5."
-      },
-      "final": {
-        letter: "Final QR",
-        evidence: "Placeholder final clue (confession).",
-        riddle: "Placeholder closing message."
-      }
+      // Widow’s Demise / Atomica
+      "stop1": { letter: "QR Code 1", evidence: "Placeholder evidence for Widow’s Stop 1.", riddle: "Placeholder riddle for Widow’s Stop 1." },
+      "stop2": { letter: "QR Code 2", evidence: "Placeholder evidence for Widow’s Stop 2.", riddle: "Placeholder riddle for Widow’s Stop 2." },
+      "stop3": { letter: "QR Code 3", evidence: "Placeholder evidence for Widow’s Stop 3.", riddle: "Placeholder riddle for Widow’s Stop 3." },
+      "stop4": { letter: "QR Code 4", evidence: "Placeholder evidence for Widow’s Stop 4.", riddle: "Placeholder riddle for Widow’s Stop 4." },
+      "stop5": { letter: "QR Code 5", evidence: "Placeholder evidence for Widow’s Stop 5.", riddle: "Placeholder riddle for Widow’s Stop 5." },
+      "final": { letter: "Final QR", evidence: "Placeholder final clue for Widow’s Mystery.", riddle: "Placeholder closing message." },
+
+      // Raven’s Ball (A–G)
+      "stopA": { letter: "QR Code A", evidence: "Placeholder evidence for Raven’s Stop A.", riddle: "Placeholder riddle for Raven’s Stop A." },
+      "stopB": { letter: "QR Code B", evidence: "Placeholder evidence for Raven’s Stop B.", riddle: "Placeholder riddle for Raven’s Stop B." },
+      "stopC": { letter: "QR Code C", evidence: "Placeholder evidence for Raven’s Stop C.", riddle: "Placeholder riddle for Raven’s Stop C." },
+      "stopD": { letter: "QR Code D", evidence: "Placeholder evidence for Raven’s Stop D.", riddle: "Placeholder riddle for Raven’s Stop D." },
+      "stopE": { letter: "QR Code E", evidence: "Placeholder evidence for Raven’s Stop E.", riddle: "Placeholder riddle for Raven’s Stop E." },
+      "stopF": { letter: "QR Code F", evidence: "Placeholder evidence for Raven’s Stop F.", riddle: "Placeholder riddle for Raven’s Stop F." },
+      "stopG": { letter: "QR Code G", evidence: "Placeholder evidence for Raven’s Stop G.", riddle: "Placeholder riddle for Raven’s Stop G." },
+      "finalA": { letter: "Final Raven’s Ball", evidence: "Placeholder final clue for Raven’s Ball Mystery.", riddle: "Placeholder closing message for Raven’s Ball." }
     };
 
     // ----- Renderer -----
@@ -112,25 +99,21 @@
         `;
       } else {
         card.innerHTML = `
-          <h1>Atomica Murder Mystery</h1>
-          <p class="muted">No clue found. You probably opened the page without a QR code.</p>
-          <p>Scan a valid QR to reveal your next clue.</p>
+          <h1>Atomica Murder Mysteries</h1>
+          <p class="muted">No clue found.</p>
+          <p>Scan a valid QR code to reveal your next clue.</p>
         `;
       }
     }
 
     function currentHashKey() {
       const raw = window.location.hash || "";
-      // Expecting #stop1, #stop2, … #final
       return raw.startsWith("#") ? raw.substring(1) : raw;
     }
 
-    // Initial render
+    // Initial + live updates
     render(currentHashKey());
-
-    // Update if hash changes (e.g., you navigate from #stop1 → #stop2)
     window.addEventListener("hashchange", () => render(currentHashKey()));
   </script>
 </body>
 </html>
-
