@@ -5,108 +5,142 @@
   <title>Atomica Murder Mysteries</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #0f0f0f;
-      --card: #1c1c1c;
-      --accent: #c41212;
-      --text: #f5f5f5;
-      --gold: #ffd56a;
-    }
-    html, body {
-      margin: 0; padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-    }
-    .wrap {
-      min-height: 100svh;
-      display: grid;
-      place-items: center;
-      padding: 32px 16px;
-    }
-    .card {
-      width: min(680px, 92vw);
-      background: var(--card);
-      border: 3px solid var(--accent);
-      border-radius: 14px;
-      box-shadow: 0 0 24px rgba(196, 18, 18, .45);
-      padding: 28px 26px;
-      text-align: center;
-    }
-    h1, h2 {
-      margin: 0 0 10px;
-      letter-spacing: 1.5px;
-    }
-    h1 { font-size: 2rem; color: #ff3a3a; text-transform: uppercase; }
-    h2 { font-size: 1.2rem; color: #ff5a5a; text-transform: uppercase; margin-top: 6px; }
-    p { font-size: 1.1rem; line-height: 1.5; margin: 10px 0; }
-    .label { color: var(--gold); font-weight: 700; }
-    .big-letter {
-      display: inline-block;
-      font-size: 2.2rem;
-      padding: 6px 14px;
-      border: 2px solid var(--gold);
-      border-radius: 10px;
-      margin: 8px 0 14px;
-    }
-    .footer {
-      margin-top: 14px; font-size: .9rem; color: #9a9a9a;
-    }
+    :root { --bg:#0f0f0f; --card:#1c1c1c; --accent:#c41212; --text:#f5f5f5; --gold:#ffd56a; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Georgia, "Times New Roman", serif; }
+    .wrap { min-height:100svh; display:grid; place-items:center; padding:32px 16px; }
+    .card { width:min(680px,92vw); background:var(--card); border:3px solid var(--accent); border-radius:14px; box-shadow:0 0 24px rgba(196,18,18,.45); padding:28px 26px; text-align:center; }
+    h1 { font-size:2rem; color:#ff3a3a; text-transform:uppercase; letter-spacing:1.5px; margin:0 0 10px; }
+    h2 { font-size:1.2rem; color:#ff5a5a; text-transform:uppercase; letter-spacing:1.2px; margin:6px 0 10px; }
+    p { font-size:1.1rem; line-height:1.5; margin:10px 0; }
+    .label { color:var(--gold); font-weight:700; }
+    .big-letter { display:inline-block; font-size:2.2rem; padding:6px 14px; border:2px solid var(--gold); border-radius:10px; margin:8px 0 14px; }
+    .footer { margin-top:14px; font-size:.9rem; color:#9a9a9a; }
+    .hint { font-size:.95rem; color:#bdbdbd; margin:8px 0 2px; }
+
+    /* PDF buttons */
+    .btn { display:inline-block; margin:8px 6px 0; padding:10px 16px; background:var(--gold); color:#1b1b1b; border-radius:10px; text-decoration:none; font-weight:700; }
+    .btn:hover { filter:brightness(.95); }
+
+    /* Inline images */
+    .img-grid { display:grid; gap:10px; }
+    .clue-img { width:100%; height:auto; border-radius:8px; border:1px solid #444; }
+    .clue-img:active { transform:scale(0.99); }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="card" id="card"><!-- JS injects content here --></div>
+    <div class="card" id="card"><!-- JS injects content --></div>
   </div>
 
   <script>
     // ========= Both Mysteries =========
     const CLUES = {
       // --- Widow’s Demise (Atomica) ---
-      "stop1": { title: "The Widow’s Demise", letter: "QR Code 1", evidence: "Placeholder evidence for Widow’s Stop 1.", riddle: "Placeholder riddle for Widow’s Stop 1." },
-      "stop2": { title: "The Widow’s Demise", letter: "QR Code 2", evidence: "Placeholder evidence for Widow’s Stop 2.", riddle: "Placeholder riddle for Widow’s Stop 2." },
-      "stop3": { title: "The Widow’s Demise", letter: "QR Code 3", evidence: "Placeholder evidence for Widow’s Stop 3.", riddle: "Placeholder riddle for Widow’s Stop 3." },
-      "stop4": { title: "The Widow’s Demise", letter: "QR Code 4", evidence: "Placeholder evidence for Widow’s Stop 4.", riddle: "Placeholder riddle for Widow’s Stop 4." },
-      "stop5": { title: "The Widow’s Demise", letter: "QR Code 5", evidence: "Placeholder evidence for Widow’s Stop 5.", riddle: "Placeholder riddle for Widow’s Stop 5." },
-      "final": { title: "The Widow’s Demise — Final", letter: "Final QR", evidence: "Placeholder final clue for Widow’s Mystery.", riddle: "Placeholder closing message." },
+      "stop1": { title:"The Widow’s Demise", letter:"QR Code 1", evidence:"Placeholder evidence for Widow’s Stop 1.", riddle:"Placeholder riddle for Widow’s Stop 1." },
+      "stop2": { title:"The Widow’s Demise", letter:"QR Code 2", evidence:"Placeholder evidence for Widow’s Stop 2.", riddle:"Placeholder riddle for Widow’s Stop 2." },
+      "stop3": { title:"The Widow’s Demise", letter:"QR Code 3", evidence:"Placeholder evidence for Widow’s Stop 3.", riddle:"Placeholder riddle for Widow’s Stop 3." },
+      "stop4": { title:"The Widow’s Demise", letter:"QR Code 4", evidence:"Placeholder evidence for Widow’s Stop 4.", riddle:"Placeholder riddle for Widow’s Stop 4." },
+      "stop5": { title:"The Widow’s Demise", letter:"QR Code 5", evidence:"Placeholder evidence for Widow’s Stop 5.", riddle:"Placeholder riddle for Widow’s Stop 5." },
+      "final": { title:"The Widow’s Demise — Final", letter:"Final QR", evidence:"Placeholder final clue for Widow’s Mystery.", riddle:"Placeholder closing message." },
 
       // --- Raven’s Ball (A–G + finalA) ---
-      "stopA": { title: "The Raven’s Ball", letter: "QR Code A", evidence: "Placeholder evidence for Raven’s Stop A.", riddle: "Placeholder riddle for Raven’s Stop A." },
-      "stopB": { title: "The Raven’s Ball", letter: "QR Code B", evidence: "Placeholder evidence for Raven’s Stop B.", riddle: "Placeholder riddle for Raven’s Stop B." },
-      "stopC": { title: "The Raven’s Ball", letter: "QR Code C", evidence: "Placeholder evidence for Raven’s Stop C.", riddle: "Placeholder riddle for Raven’s Stop C." },
-      "stopD": { title: "The Raven’s Ball", letter: "QR Code D", evidence: "Placeholder evidence for Raven’s Stop D.", riddle: "Placeholder riddle for Raven’s Stop D." },
-      "stopE": { title: "The Raven’s Ball", letter: "QR Code E", evidence: "Placeholder evidence for Raven’s Stop E.", riddle: "Placeholder riddle for Raven’s Stop E." },
-      "stopF": { title: "The Raven’s Ball", letter: "QR Code F", evidence: "Placeholder evidence for Raven’s Stop F.", riddle: "Placeholder riddle for Raven’s Stop F." },
-      "stopG": { title: "The Raven’s Ball", letter: "QR Code G", evidence: "Placeholder evidence for Raven’s Stop G.", riddle: "Placeholder riddle for Raven’s Stop G." },
-      "finalA": { title: "The Raven’s Ball — Final", letter: "Final QR (Raven’s)", evidence: "Placeholder final clue for Raven’s Ball Mystery.", riddle: "Placeholder closing message for Raven’s Ball." }
+      "stopA": {
+        title:"The Raven’s Ball", letter:"QR Code A",
+        evidence:"Placeholder evidence for Raven’s Stop A.",
+        riddle:"Placeholder riddle for Raven’s Stop A.",
+        pdfs:[ "clues/ravens/rb-clue-a.pdf" ],
+        images:[ "clues/ravens/rb-clue-a-1.jpg" ] // optional fallback images
+      },
+      "stopB": {
+        title:"The Raven’s Ball", letter:"QR Code B",
+        evidence:"Placeholder evidence for Raven’s Stop B.",
+        riddle:"Placeholder riddle for Raven’s Stop B.",
+        pdfs:[ "clues/ravens/rb-clue-b.pdf" ],
+        images:[ "clues/ravens/rb-clue-b-1.jpg" ]
+      },
+      "stopC": {
+        title:"The Raven’s Ball", letter:"QR Code C",
+        evidence:"Placeholder evidence for Raven’s Stop C.",
+        riddle:"Placeholder riddle for Raven’s Stop C.",
+        pdfs:[ "clues/ravens/rb-clue-c.pdf" ],
+        images:[ "clues/ravens/rb-clue-c-1.jpg" ]
+      },
+      "stopD": {
+        title:"The Raven’s Ball", letter:"QR Code D",
+        evidence:"Placeholder evidence for Raven’s Stop D.",
+        riddle:"Placeholder riddle for Raven’s Stop D.",
+        pdfs:[ "clues/ravens/rb-clue-d.pdf" ],
+        images:[ "clues/ravens/rb-clue-d-1.jpg" ]
+      },
+      "stopE": {
+        title:"The Raven’s Ball", letter:"QR Code E",
+        evidence:"Placeholder evidence for Raven’s Stop E.",
+        riddle:"Placeholder riddle for Raven’s Stop E.",
+        pdfs:[ "clues/ravens/rb-clue-e.pdf" ],
+        images:[ "clues/ravens/rb-clue-e-1.jpg" ]
+      },
+      "stopF": {
+        title:"The Raven’s Ball", letter:"QR Code F",
+        evidence:"Placeholder evidence for Raven’s Stop F.",
+        riddle:"Placeholder riddle for Raven’s Stop F.",
+        pdfs:[ "clues/ravens/rb-clue-f.pdf" ],
+        images:[ "clues/ravens/rb-clue-f-1.jpg" ]
+      },
+      "stopG": {
+        title:"The Raven’s Ball", letter:"QR Code G",
+        evidence:"Placeholder evidence for Raven’s Stop G.",
+        riddle:"Placeholder riddle for Raven’s Stop G.",
+        pdfs:[ "clues/ravens/rb-clue-g.pdf" ],
+        images:[ "clues/ravens/rb-clue-g-1.jpg" ]
+      },
+      "finalA": {
+        title:"The Raven’s Ball — Final", letter:"Final QR (Raven’s)",
+        evidence:"Placeholder final clue for Raven’s Ball Mystery.",
+        riddle:"Placeholder closing message for Raven’s Ball.",
+        pdfs:[ "clues/ravens/rb-final.pdf" ],
+        images:[ "clues/ravens/rb-final-1.jpg" ]
+      }
     };
 
-    function keyFromHash() {
-      const raw = window.location.hash || "";
-      return raw.startsWith("#") ? raw.substring(1) : raw;
-    }
+    function keyFromHash(){ const raw = window.location.hash || ""; return raw.startsWith("#") ? raw.substring(1) : raw; }
 
-    const card = document.getElementById("card");
-
-    function render() {
+    function render(){
       const key = keyFromHash();
       const clue = CLUES[key];
-      if (clue) {
-        card.innerHTML = `
-          <h1>${clue.title}</h1>
-          <h2>${clue.letter}</h2>
-          <div class="big-letter">${clue.letter}</div>
-          <p><span class="label">Evidence:</span> ${clue.evidence}</p>
-          <p><span class="label">Riddle:</span> ${clue.riddle}</p>
-          <div class="footer">Scan the next QR to continue…</div>
-        `;
-      } else {
+      const card = document.getElementById("card");
+
+      if(!clue){
         card.innerHTML = `
           <h1>Atomica Murder Mysteries</h1>
           <p>No clue found. Use a valid QR code.</p>
-          <p class="footer">This page powers multiple games — hash must match one of: stop1–stop5, final, stopA–stopG, finalA.</p>
+          <p class="footer">Hash must match: stop1–stop5, final, stopA–stopG, finalA.</p>
         `;
+        return;
       }
+
+      const pdfButtons = (clue.pdfs || [])
+        .map((url,i)=>`<p><a class="btn" href="${url}" target="_blank" rel="noopener">View Clue ${i+1} (PDF)</a></p>`)
+        .join("");
+
+      const imageBlocks = (clue.images || [])
+        .map((url)=>`<div class="img-grid"><a href="${url}" target="_blank" rel="noopener"><img class="clue-img" src="${url}" alt="Clue image"></a></div>`)
+        .join("");
+
+      const hint = (clue.pdfs && clue.pdfs.length && clue.images && clue.images.length)
+        ? `<p class="hint">If the PDF won’t open in your app, tap the images below or choose “Open in Browser.”</p>`
+        : "";
+
+      card.innerHTML = `
+        <h1>${clue.title}</h1>
+        <h2>${clue.letter}</h2>
+        <div class="big-letter">${clue.letter}</div>
+        ${pdfButtons}
+        ${hint}
+        ${imageBlocks}
+        <p><span class="label">Evidence:</span> ${clue.evidence}</p>
+        <p><span class="label">Riddle:</span> ${clue.riddle}</p>
+        <div class="footer">Scan the next QR to continue…</div>
+      `;
     }
 
     render();
