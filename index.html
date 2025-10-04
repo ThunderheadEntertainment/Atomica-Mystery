@@ -44,62 +44,55 @@
       "final": { title:"The Widow’s Demise — Final", letter:"Final QR", evidence:"Placeholder final clue for Widow’s Mystery.", riddle:"Placeholder closing message." },
 
       // --- Raven’s Ball (A–G + finalA) ---
-      "stopA": {
-        title:"The Raven’s Ball", letter:"QR Code A",
-        evidence:"Placeholder evidence for Raven’s Stop A.",
-        riddle:"Placeholder riddle for Raven’s Stop A.",
-        pdfs:[ "clues/ravens/rb-clue-a.pdf" ],
-        images:[ "clues/ravens/rb-clue-a-1.jpg" ] // optional fallback images
-      },
-      "stopB": {
-        title:"The Raven’s Ball", letter:"QR Code B",
-        evidence:"Placeholder evidence for Raven’s Stop B.",
-        riddle:"Placeholder riddle for Raven’s Stop B.",
-        pdfs:[ "clues/ravens/rb-clue-b.pdf" ],
-        images:[ "clues/ravens/rb-clue-b-1.jpg" ]
-      },
-      "stopC": {
-        title:"The Raven’s Ball", letter:"QR Code C",
-        evidence:"Placeholder evidence for Raven’s Stop C.",
-        riddle:"Placeholder riddle for Raven’s Stop C.",
-        pdfs:[ "clues/ravens/rb-clue-c.pdf" ],
-        images:[ "clues/ravens/rb-clue-c-1.jpg" ]
-      },
-      "stopD": {
-        title:"The Raven’s Ball", letter:"QR Code D",
-        evidence:"Placeholder evidence for Raven’s Stop D.",
-        riddle:"Placeholder riddle for Raven’s Stop D.",
-        pdfs:[ "clues/ravens/rb-clue-d.pdf" ],
-        images:[ "clues/ravens/rb-clue-d-1.jpg" ]
-      },
-      "stopE": {
-        title:"The Raven’s Ball", letter:"QR Code E",
-        evidence:"Placeholder evidence for Raven’s Stop E.",
-        riddle:"Placeholder riddle for Raven’s Stop E.",
-        pdfs:[ "clues/ravens/rb-clue-e.pdf" ],
-        images:[ "clues/ravens/rb-clue-e-1.jpg" ]
-      },
-      "stopF": {
-        title:"The Raven’s Ball", letter:"QR Code F",
-        evidence:"Placeholder evidence for Raven’s Stop F.",
-        riddle:"Placeholder riddle for Raven’s Stop F.",
-        pdfs:[ "clues/ravens/rb-clue-f.pdf" ],
-        images:[ "clues/ravens/rb-clue-f-1.jpg" ]
-      },
-      "stopG": {
-        title:"The Raven’s Ball", letter:"QR Code G",
-        evidence:"Placeholder evidence for Raven’s Stop G.",
-        riddle:"Placeholder riddle for Raven’s Stop G.",
-        pdfs:[ "clues/ravens/rb-clue-g.pdf" ],
-        images:[ "clues/ravens/rb-clue-g-1.jpg" ]
-      },
-      "finalA": {
-        title:"The Raven’s Ball — Final", letter:"Final QR (Raven’s)",
-        evidence:"Placeholder final clue for Raven’s Ball Mystery.",
-        riddle:"Placeholder closing message for Raven’s Ball.",
-        pdfs:[ "clues/ravens/rb-final.pdf" ],
-        images:[ "clues/ravens/rb-final-1.jpg" ]
-      }
+      // --- Raven’s Ball (A–G + finalA) ---
+"stopA": {
+  title:"The Raven’s Ball", letter:"QR Code A",
+  evidence:"Placeholder evidence for Raven’s Stop A.",
+  riddle:"Placeholder riddle for Raven’s Stop A.",
+  pdfs:[ "clues/ravens/A-Fatal-Celebration.pdf" ] // intro sheet
+},
+"stopB": {
+  title:"The Raven’s Ball", letter:"QR Code B",
+  evidence:"Placeholder evidence for Raven’s Stop B.",
+  riddle:"Placeholder riddle for Raven’s Stop B.",
+  pdfs:[ "clues/ravens/MARIA-CLEM-ARTICLE.pdf" ]
+},
+"stopC": {
+  title:"The Raven’s Ball", letter:"QR Code C",
+  evidence:"Placeholder evidence for Raven’s Stop C.",
+  riddle:"Placeholder riddle for Raven’s Stop C.",
+  pdfs:[ "clues/ravens/JOHN-ALLAN-ARTICLE.pdf" ]
+},
+"stopD": {
+  title:"The Raven’s Ball", letter:"QR Code D",
+  evidence:"Placeholder evidence for Raven’s Stop D.",
+  riddle:"Placeholder riddle for Raven’s Stop D.",
+  pdfs:[ "clues/ravens/FRANCES-OSGOOD-ARTICLE.pdf" ]
+},
+"stopE": {
+  title:"The Raven’s Ball", letter:"QR Code E",
+  evidence:"Placeholder evidence for Raven’s Stop E.",
+  riddle:"Placeholder riddle for Raven’s Stop E.",
+  pdfs:[ "clues/ravens/ELIZABETH-ELLIOT-ARTICLE.pdf" ]
+},
+"stopF": {
+  title:"The Raven’s Ball", letter:"QR Code F",
+  evidence:"Placeholder evidence for Raven’s Stop F.",
+  riddle:"Placeholder riddle for Raven’s Stop F.",
+  pdfs:[ "clues/ravens/EDGAR-ALLAN-POE-ARTICLE.pdf" ]
+},
+"stopG": {
+  title:"The Raven’s Ball", letter:"QR Code G",
+  evidence:"Placeholder evidence for Raven’s Stop G.",
+  riddle:"Placeholder riddle for Raven’s Stop G."
+  // add pdfs/images here later if you have a 7th doc
+},
+"finalA": {
+  title:"The Raven’s Ball — Final", letter:"Final QR (Raven’s)",
+  evidence:"Placeholder final clue for Raven’s Ball Mystery.",
+  riddle:"Placeholder closing message for Raven’s Ball."
+  // optional pdfs/images here for a finale handout
+}
     };
 
     function keyFromHash(){ const raw = window.location.hash || ""; return raw.startsWith("#") ? raw.substring(1) : raw; }
