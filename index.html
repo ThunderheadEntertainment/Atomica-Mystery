@@ -124,4 +124,45 @@
 
       if (!clue) {
         card.innerHTML = `
-          <h1>Atomic
+          <h1>Atomica Murder Mysteries</h1>
+          <p>No clue found. Use a valid QR code.</p>
+          <p class="footer">Valid hashes: stop1–stop5, final, stopA–stopG, finalA.</p>
+        `;
+        return;
+      }
+
+      const pdfButtons = (clue.pdfs || [])
+        .map((url, i) => `<p><a class="btn" href="${url}" target="_blank" rel="noopener">Click to View Clue ${i + 1} (PDF)</a></p>`)
+        .join("");
+
+      const imageBlocks = (clue.images || [])
+        .map((url) => `<div class="img-grid"><a href="${url}" target="_blank" rel="noopener"><img class="clue-img" src="${url}" alt="Clue image"></a></div>`)
+        .join("");
+
+      const nextHTML   = clue.next   ? `<p><span class="label">Next Steps:</span> ${clue.next}</p>` : "";
+      const textHTML   = clue.text   ? `<p>${clue.text}</p>` : "";
+      const riddleHTML = clue.riddle ? `<p><span class="label">Riddle:</span> ${clue.riddle}</p>` : "";
+
+      const hint = (clue.pdfs && clue.pdfs.length && clue.images && clue.images.length)
+        ? `<p class="hint">If the PDF won’t open in your app, tap the images below or choose “Open in Browser.”</p>`
+        : (clue.pdfs && clue.pdfs.length ? `<p class="hint">If the PDF won’t open, try “Open in Browser.”</p>` : "");
+
+      card.innerHTML = `
+        <h1>${clue.title || 'Atomica Murder Mysteries'}</h1>
+        ${clue.letter ? `<h2>${clue.letter}</h2>` : ""}
+        ${clue.letter ? `<div class="big-letter">${clue.letter}</div>` : ""}
+        ${pdfButtons}
+        ${hint}
+        ${imageBlocks}
+        ${textHTML}
+        ${riddleHTML}
+        ${nextHTML}
+        <div class="footer">Scan the next QR to continue…</div>
+      `;
+    }
+
+    render();
+    window.addEventListener("hashchange", render);
+  </script>
+</body>
+</html>
