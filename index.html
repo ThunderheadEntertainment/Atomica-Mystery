@@ -13,15 +13,15 @@
     h2 { font-size:1.2rem; color:#ff5a5a; text-transform:uppercase; letter-spacing:1.2px; margin:6px 0 10px; }
     p { font-size:1.1rem; line-height:1.5; margin:10px 0; }
     .label { color:var(--gold); font-weight:700; }
-    .big-letter { display:inline-block; font-size:2.2rem; padding:6px 14px; border:2px solid var(--gold); border-radius:10px; margin:8px 0 14px; }
+    .big-letter { display:inline-block; font-size:2rem; padding:6px 14px; border:2px solid var(--gold); border-radius:10px; margin:8px 0 14px; }
     .footer { margin-top:14px; font-size:.9rem; color:#9a9a9a; }
     .hint { font-size:.95rem; color:#bdbdbd; margin:8px 0 2px; }
 
-    /* PDF buttons */
+    /* Buttons for PDFs */
     .btn { display:inline-block; margin:8px 6px 0; padding:10px 16px; background:var(--gold); color:#1b1b1b; border-radius:10px; text-decoration:none; font-weight:700; }
     .btn:hover { filter:brightness(.95); }
 
-    /* Inline images */
+    /* Inline image fallback (optional) */
     .img-grid { display:grid; gap:10px; }
     .clue-img { width:100%; height:auto; border-radius:8px; border:1px solid #444; }
     .clue-img:active { transform:scale(0.99); }
@@ -33,68 +33,66 @@
   </div>
 
   <script>
-    // ========= Both Mysteries =========
+    // ================== CLUES (no evidence/riddle fields) ==================
     const CLUES = {
-      // --- Widow’s Demise (Atomica) ---
-      "stop1": { title:"The Widow’s Demise", letter:"QR Code 1", evidence:"Placeholder evidence for Widow’s Stop 1.", riddle:"Placeholder riddle for Widow’s Stop 1." },
-      "stop2": { title:"The Widow’s Demise", letter:"QR Code 2", evidence:"Placeholder evidence for Widow’s Stop 2.", riddle:"Placeholder riddle for Widow’s Stop 2." },
-      "stop3": { title:"The Widow’s Demise", letter:"QR Code 3", evidence:"Placeholder evidence for Widow’s Stop 3.", riddle:"Placeholder riddle for Widow’s Stop 3." },
-      "stop4": { title:"The Widow’s Demise", letter:"QR Code 4", evidence:"Placeholder evidence for Widow’s Stop 4.", riddle:"Placeholder riddle for Widow’s Stop 4." },
-      "stop5": { title:"The Widow’s Demise", letter:"QR Code 5", evidence:"Placeholder evidence for Widow’s Stop 5.", riddle:"Placeholder riddle for Widow’s Stop 5." },
-      "final": { title:"The Widow’s Demise — Final", letter:"Final QR", evidence:"Placeholder final clue for Widow’s Mystery.", riddle:"Placeholder closing message." },
+      // -------- The Widow’s Demise (Atomica) --------
+      "stop1": {
+        title:"The Widow’s Demise",
+        letter:"QR Code 1",
+        next:"Next Steps: placeholder directions for the opening move (e.g., collect the first letter and proceed to the café)."
+      },
+      "stop2": { title:"The Widow’s Demise", letter:"QR Code 2" },
+      "stop3": { title:"The Widow’s Demise", letter:"QR Code 3" },
+      "stop4": { title:"The Widow’s Demise", letter:"QR Code 4" },
+      "stop5": { title:"The Widow’s Demise", letter:"QR Code 5" },
+      "final": { title:"The Widow’s Demise — Final", letter:"Final QR" },
 
-      // --- Raven’s Ball (A–G + finalA) ---
-      // --- Raven’s Ball (A–G + finalA) ---
-"stopA": {
-  title:"The Raven’s Ball", letter:"QR Code A",
-  evidence:"Placeholder evidence for Raven’s Stop A.",
-  riddle:"Placeholder riddle for Raven’s Stop A.",
-  pdfs:[ "clues/ravens/A-Fatal-Celebration.pdf" ] // intro sheet
-},
-"stopB": {
-  title:"The Raven’s Ball", letter:"QR Code B",
-  evidence:"Placeholder evidence for Raven’s Stop B.",
-  riddle:"Placeholder riddle for Raven’s Stop B.",
-  pdfs:[ "clues/ravens/MARIA-CLEM-ARTICLE.pdf" ]
-},
-"stopC": {
-  title:"The Raven’s Ball", letter:"QR Code C",
-  evidence:"Placeholder evidence for Raven’s Stop C.",
-  riddle:"Placeholder riddle for Raven’s Stop C.",
-  pdfs:[ "clues/ravens/JOHN-ALLAN-ARTICLE.pdf" ]
-},
-"stopD": {
-  title:"The Raven’s Ball", letter:"QR Code D",
-  evidence:"Placeholder evidence for Raven’s Stop D.",
-  riddle:"Placeholder riddle for Raven’s Stop D.",
-  pdfs:[ "clues/ravens/FRANCES-OSGOOD-ARTICLE.pdf" ]
-},
-"stopE": {
-  title:"The Raven’s Ball", letter:"QR Code E",
-  evidence:"Placeholder evidence for Raven’s Stop E.",
-  riddle:"Placeholder riddle for Raven’s Stop E.",
-  pdfs:[ "clues/ravens/ELIZABETH-ELLIOT-ARTICLE.pdf" ]
-},
-"stopF": {
-  title:"The Raven’s Ball", letter:"QR Code F",
-  evidence:"Placeholder evidence for Raven’s Stop F.",
-  riddle:"Placeholder riddle for Raven’s Stop F.",
-  pdfs:[ "clues/ravens/EDGAR-ALLAN-POE-ARTICLE.pdf" ]
-},
-"stopG": {
-  title:"The Raven’s Ball", letter:"QR Code G",
-  evidence:"Placeholder evidence for Raven’s Stop G.",
-  riddle:"Placeholder riddle for Raven’s Stop G."
-  // add pdfs/images here later if you have a 7th doc
-},
-"finalA": {
-  title:"The Raven’s Ball — Final", letter:"Final QR (Raven’s)",
-  evidence:"Placeholder final clue for Raven’s Ball Mystery.",
-  riddle:"Placeholder closing message for Raven’s Ball."
-  // optional pdfs/images here for a finale handout
-}
+      // -------- The Raven’s Ball (PDF-first) --------
+      // Upload these PDFs to: /clues/ravens/ in your repo (case-sensitive)
+      "stopA": {
+        title:"The Raven’s Ball",
+        letter:"QR Code A",
+        next:"Next Steps: placeholder directions for Raven’s Ball (e.g., read the intro PDF, then proceed to QR Code B).",
+        pdfs:[ "clues/ravens/A-Fatal-Celebration.pdf" ]
+      },
+      "stopB": {
+        title:"The Raven’s Ball",
+        letter:"QR Code B",
+        pdfs:[ "clues/ravens/MARIA-CLEM-ARTICLE.pdf" ]
+      },
+      "stopC": {
+        title:"The Raven’s Ball",
+        letter:"QR Code C",
+        pdfs:[ "clues/ravens/JOHN-ALLAN-ARTICLE.pdf" ]
+      },
+      "stopD": {
+        title:"The Raven’s Ball",
+        letter:"QR Code D",
+        pdfs:[ "clues/ravens/FRANCES-OSGOOD-ARTICLE.pdf" ]
+      },
+      "stopE": {
+        title:"The Raven’s Ball",
+        letter:"QR Code E",
+        pdfs:[ "clues/ravens/ELIZABETH-ELLIOT-ARTICLE.pdf" ]
+      },
+      "stopF": {
+        title:"The Raven’s Ball",
+        letter:"QR Code F",
+        pdfs:[ "clues/ravens/EDGAR-ALLAN-POE-ARTICLE.pdf" ]
+      },
+      "stopG": {
+        title:"The Raven’s Ball",
+        letter:"QR Code G"
+        // Add pdfs/images here later if you have them
+      },
+      "finalA": {
+        title:"The Raven’s Ball — Final",
+        letter:"Final QR (Raven’s)"
+        // Optional finale PDF/image here
+      }
     };
 
+    // ================== RENDERER ==================
     function keyFromHash(){ const raw = window.location.hash || ""; return raw.startsWith("#") ? raw.substring(1) : raw; }
 
     function render(){
@@ -106,7 +104,7 @@
         card.innerHTML = `
           <h1>Atomica Murder Mysteries</h1>
           <p>No clue found. Use a valid QR code.</p>
-          <p class="footer">Hash must match: stop1–stop5, final, stopA–stopG, finalA.</p>
+          <p class="footer">Valid hashes: stop1–stop5, final, stopA–stopG, finalA.</p>
         `;
         return;
       }
@@ -119,19 +117,19 @@
         .map((url)=>`<div class="img-grid"><a href="${url}" target="_blank" rel="noopener"><img class="clue-img" src="${url}" alt="Clue image"></a></div>`)
         .join("");
 
+      const nextHTML = clue.next ? `<p><span class="label">Next Steps:</span> ${clue.next}</p>` : "";
+
       const hint = (clue.pdfs && clue.pdfs.length && clue.images && clue.images.length)
         ? `<p class="hint">If the PDF won’t open in your app, tap the images below or choose “Open in Browser.”</p>`
-        : "";
+        : (clue.pdfs && clue.pdfs.length ? `<p class="hint">If the PDF won’t open, try “Open in Browser.”</p>` : "");
 
       card.innerHTML = `
-        <h1>${clue.title}</h1>
-        <h2>${clue.letter}</h2>
-        <div class="big-letter">${clue.letter}</div>
+        <h1>${clue.title || 'Atomica Murder Mysteries'}</h1>
+        ${clue.letter ? `<h2>${clue.letter}</h2><div class="big-letter">${clue.letter}</div>` : ""}
         ${pdfButtons}
         ${hint}
         ${imageBlocks}
-        <p><span class="label">Evidence:</span> ${clue.evidence}</p>
-        <p><span class="label">Riddle:</span> ${clue.riddle}</p>
+        ${nextHTML}
         <div class="footer">Scan the next QR to continue…</div>
       `;
     }
