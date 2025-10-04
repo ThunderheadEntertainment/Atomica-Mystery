@@ -28,141 +28,152 @@
     <div class="card" id="card"><!-- JS injects content --></div>
   </div>
 
-  <script>
-    // ================== CLUES ==================
-    const CLUES = {
-      /* -------- The Widow’s Demise (Atomica) -------- */
-      "stop1": {
-        title: "The Widow’s Demise",
-        letter: "E",
-        text: "You find a bloody handkerchief with Charlie’s initials near the VR headset, plus footprints in the dust. The prints are too small for Dr. Tom’s large boots.",
-        riddle: "Go where steam and chatter reveal confessions."
-      },
-      "stop2": {
-        title: "The Widow’s Demise",
-        letter: "Y",
-        text: "A knife taped under a bench is wrapped in Nora’s prescription in Dr. Tom’s handwriting. The owner says Eddie was arguing at the counter—too public to hide the knife.",
-        riddle: "Go where sound spins in endless circles, and echoes never die."
-      },
-      "stop3": {
-        title: "The Widow’s Demise",
-        letter: "E",
-        text: "A blood-stained police citation with Eddie’s signature lies on the floor. A fresh cigar butt nearby looks planted—Charlie can’t smoke due to asthma.",
-        riddle: "Go where laughter masks secrets."
-      },
-      "stop4": {
-        title: "The Widow’s Demise",
-        letter: "S",
-        text: "A torn ‘beneficiary enrollment’ naming Charlie turns up under a seat, but the manager says it’s a sketch prop—staged evidence.",
-        riddle: "Go where fashion recalls the past, and secrets wear a new face."
-      },
-      "stop5": {
-        title: "The Widow’s Demise",
-        letter: "!",
-        text: "A blood-stained women’s silk glove sits in a back corner—Jane’s or Nora’s size/style, suggesting intimate access. The owner says all suspects visit—and Eddie hasn’t smoked in years.",
-        riddle: "Return to where it began—back to the staircase and the silent safe."
-      },
-      "final": {
-        title: "The Widow’s Demise — Final",
-        letter: "",
-        text: "Use the letters E Y E S ! and the phone-keypad trick to open the safe and read Jane’s confession."
-      },
+ <script>
+  // ================== CLUES ==================
+  const CLUES = {
+    /* -------- The Widow’s Demise (Atomica) -------- */
+    "stop1": {
+      title: "The Widow’s Demise",
+      letter: "E",
+      collect: true,
+      text: "You find a bloody handkerchief with Charlie’s initials near the VR headset, plus footprints in the dust. The prints are too small for Dr. Tom’s large boots.",
+      riddle: "Go where steam and chatter reveal confessions."
+    },
+    "stop2": {
+      title: "The Widow’s Demise",
+      letter: "Y",
+      collect: true,
+      text: "A knife taped under a bench is wrapped in Nora’s prescription in Dr. Tom’s handwriting. The owner says Eddie was arguing at the counter—too public to hide the knife.",
+      riddle: "Go where sound spins in endless circles, and echoes never die."
+    },
+    "stop3": {
+      title: "The Widow’s Demise",
+      letter: "E",
+      collect: true,
+      text: "A blood-stained police citation with Eddie’s signature lies on the floor. A fresh cigar butt nearby looks planted—Charlie can’t smoke due to asthma.",
+      riddle: "Go where laughter masks secrets."
+    },
+    "stop4": {
+      title: "The Widow’s Demise",
+      letter: "S",
+      collect: true,
+      text: "A torn ‘beneficiary enrollment’ naming Charlie turns up under a seat, but the manager says it’s a sketch prop—staged evidence.",
+      riddle: "Go where fashion recalls the past, and secrets wear a new face."
+    },
+    "stop5": {
+      title: "The Widow’s Demise",
+      letter: "!",
+      collect: true,
+      text: "A blood-stained women’s silk glove sits in a back corner—Jane’s or Nora’s size/style, suggesting intimate access. The owner says all suspects visit—and Eddie hasn’t smoked in years.",
+      riddle: "Return to where it began—back to the staircase and the silent safe."
+    },
+    "final": {
+      title: "The Widow’s Demise — Final",
+      letter: "",
+      text: "Use the letters E Y E S ! and the phone-keypad trick to open the safe and read Jane’s confession."
+    },
 
-      /* -------- The Raven’s Ball (PDF-first) -------- */
-      "stopA": {
-        title: "The Raven’s Ball",
-        letter: "QR Code A",
-        next: "Now that you know Edgar Allan Poe's greatest rival, Rufus Grisswald, was murdered, perhaps you should seek out the spirit of Poe himself. In a long brown coat, mustachioed, and pale of face, Poe should be around here somewhere....",
-        pdfs: [ "clues/ravens/A-Fatal-Celebration.pdf" ]
-      },
-      "stopB": {
-        title: "The Raven’s Ball",
-        letter: "QR Code B",
-        pdfs: [ "clues/ravens/JOHN-ALLAN-ARTICLE.pdf" ]
-      },
-      "stopC": {
-        title: "The Raven’s Ball",
-        letter: "QR Code C",
-        pdfs: [ "clues/ravens/MARIA-CLEM-ARTICLE.pdf" ]
-      },
-      "stopD": {
-        title: "The Raven’s Ball",
-        letter: "QR Code D",
-        pdfs: [ "clues/ravens/FRANCES-OSGOOD-ARTICLE.pdf" ]
-      },
-      "stopE": {
-        title: "The Raven’s Ball",
-        letter: "QR Code E",
-        next: "If you think you know who killed Rufus Grisswald, tell the town guard at the entrance to the Raven's Ball!",
-        pdfs: [ "clues/ravens/ELIZABETH-ELLIOT-ARTICLE.pdf" ]
-      },
-      "stopF": {
-        title: "The Raven’s Ball",
-        letter: "QR Code F",
-        pdfs: [ "clues/ravens/EDGAR-ALLAN-POE-ARTICLE.pdf" ]
-      },
-      "stopG": {
-        title: "The Raven’s Ball",
-        letter: "QR Code G"
-      },
-      "finalA": {
-        title: "The Raven’s Ball — Final",
-        letter: "Final QR (Raven’s)"
-      }
-    };
-
-    // ================== RENDERER ==================
-    function keyFromHash() {
-      const raw = window.location.hash || "";
-      return raw.startsWith("#") ? raw.substring(1) : raw;
+    /* -------- The Raven’s Ball (PDF-first) -------- */
+    "stopA": {
+      title: "The Raven’s Ball",
+      letter: "QR Code A",
+      next: "Now that you know Edgar Allan Poe's greatest rival, Rufus Grisswald, was murdered, perhaps you should seek out the spirit of Poe himself. In a long brown coat, mustachioed, and pale of face, Poe should be around here somewhere....",
+      pdfs: [ "clues/ravens/A-Fatal-Celebration.pdf" ]
+    },
+    "stopB": {
+      title: "The Raven’s Ball",
+      letter: "QR Code B",
+      pdfs: [ "clues/ravens/JOHN-ALLAN-ARTICLE.pdf" ]
+    },
+    "stopC": {
+      title: "The Raven’s Ball",
+      letter: "QR Code C",
+      pdfs: [ "clues/ravens/MARIA-CLEM-ARTICLE.pdf" ]
+    },
+    "stopD": {
+      title: "The Raven’s Ball",
+      letter: "QR Code D",
+      pdfs: [ "clues/ravens/FRANCES-OSGOOD-ARTICLE.pdf" ]
+    },
+    "stopE": {
+      title: "The Raven’s Ball",
+      letter: "QR Code E",
+      next: "If you think you know who killed Rufus Grisswald, tell the town guard at the entrance to the Raven's Ball!",
+      pdfs: [ "clues/ravens/ELIZABETH-ELLIOT-ARTICLE.pdf" ]
+    },
+    "stopF": {
+      title: "The Raven’s Ball",
+      letter: "QR Code F",
+      pdfs: [ "clues/ravens/EDGAR-ALLAN-POE-ARTICLE.pdf" ]
+    },
+    "stopG": {
+      title: "The Raven’s Ball",
+      letter: "QR Code G"
+    },
+    "finalA": {
+      title: "The Raven’s Ball — Final",
+      letter: "Final QR (Raven’s)"
     }
+  };
 
-    function render() {
-      const key = keyFromHash();
-      const clue = CLUES[key];
-      const card = document.getElementById("card");
+  // ================== RENDERER ==================
+  function keyFromHash() {
+    const raw = window.location.hash || "";
+    return raw.startsWith("#") ? raw.substring(1) : raw;
+  }
 
-      if (!clue) {
-        card.innerHTML = `
-          <h1>Atomica Murder Mysteries</h1>
-          <p>No clue found. Use a valid QR code.</p>
-          <p class="footer">Valid hashes: stop1–stop5, final, stopA–stopG, finalA.</p>
-        `;
-        return;
-      }
+  function render() {
+    const key = keyFromHash();
+    const clue = CLUES[key];
+    const card = document.getElementById("card");
 
-      const pdfButtons = (clue.pdfs || [])
-        .map((url, i) => `<p><a class="btn" href="${url}" target="_blank" rel="noopener">Click to View Clue ${i + 1} (PDF)</a></p>`)
-        .join("");
-
-      const imageBlocks = (clue.images || [])
-        .map((url) => `<div class="img-grid"><a href="${url}" target="_blank" rel="noopener"><img class="clue-img" src="${url}" alt="Clue image"></a></div>`)
-        .join("");
-
-      const nextHTML   = clue.next   ? `<p><span class="label">Next Steps:</span> ${clue.next}</p>` : "";
-      const textHTML   = clue.text   ? `<p>${clue.text}</p>` : "";
-      const riddleHTML = clue.riddle ? `<p><span class="label">Riddle:</span> ${clue.riddle}</p>` : "";
-
-      const hint = (clue.pdfs && clue.pdfs.length && clue.images && clue.images.length)
-        ? `<p class="hint">If the PDF won’t open in your app, tap the images below or choose “Open in Browser.”</p>`
-        : (clue.pdfs && clue.pdfs.length ? `<p class="hint">If the PDF won’t open, try “Open in Browser.”</p>` : "");
-
+    if (!clue) {
       card.innerHTML = `
-        <h1>${clue.title || 'Atomica Murder Mysteries'}</h1>
-        ${clue.letter ? `<h2>${clue.letter}</h2>` : ""}
-        ${clue.letter ? `<div class="big-letter">${clue.letter}</div>` : ""}
-        ${pdfButtons}
-        ${hint}
-        ${imageBlocks}
-        ${textHTML}
-        ${riddleHTML}
-        ${nextHTML}
-        <div class="footer">Scan the next QR to continue…</div>
+        <h1>Atomica Murder Mysteries</h1>
+        <p>No clue found. Use a valid QR code.</p>
+        <p class="footer">Valid hashes: stop1–stop5, final, stopA–stopG, finalA.</p>
       `;
+      return;
     }
 
-    render();
-    window.addEventListener("hashchange", render);
-  </script>
+    const pdfButtons = (clue.pdfs || [])
+      .map((url, i) => `<p><a class="btn" href="${url}" target="_blank" rel="noopener">Click to View Clue ${i + 1} (PDF)</a></p>`)
+      .join("");
+
+    const imageBlocks = (clue.images || [])
+      .map((url) => `<div class="img-grid"><a href="${url}" target="_blank" rel="noopener"><img class="clue-img" src="${url}" alt="Clue image"></a></div>`)
+      .join("");
+
+    // Show "Letter Collected" only for entries marked collect:true (Widow’s stops)
+    const letterBlock = clue.letter
+      ? (clue.collect
+          ? `<h2>Letter Collected: ${clue.letter}</h2><div class="big-letter">${clue.letter}</div>`
+          : `<h2>${clue.letter}</h2><div class="big-letter">${clue.letter}</div>`)
+      : "";
+
+    const nextHTML   = clue.next   ? `<p><span class="label">Next Steps:</span> ${clue.next}</p>` : "";
+    const textHTML   = clue.text   ? `<p>${clue.text}</p>` : "";
+    const riddleHTML = clue.riddle ? `<p><span class="label">Riddle:</span> ${clue.riddle}</p>` : "";
+
+    const hint = (clue.pdfs && clue.pdfs.length && clue.images && clue.images.length)
+      ? `<p class="hint">If the PDF won’t open in your app, tap the images below or choose “Open in Browser.”</p>`
+      : (clue.pdfs && clue.pdfs.length ? `<p class="hint">If the PDF won’t open, try “Open in Browser.”</p>` : "");
+
+    card.innerHTML = `
+      <h1>${clue.title || 'Atomica Murder Mysteries'}</h1>
+      ${letterBlock}
+      ${pdfButtons}
+      ${hint}
+      ${imageBlocks}
+      ${textHTML}
+      ${riddleHTML}
+      ${nextHTML}
+      <div class="footer">Scan the next QR to continue…</div>
+    `;
+  }
+
+  render();
+  window.addEventListener("hashchange", render);
+</script>
 </body>
 </html>
